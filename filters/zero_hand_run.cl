@@ -13,10 +13,12 @@ long filter(instance *inst) {
 
   if ((firstTag != Charm_Tag && firstTag != Double_Tag) ||
       secondTag != Charm_Tag) {
-    return 0; // we always want two charm tags
+    return 0;
+    // we always want two charm tags, getting double tag first is
+    // essentially the same as getting charm tag first
   }
-  // First Pack has to include exactly one Judgement and one Fool
 
+  // First Pack has to include exactly one Judgement and one Fool
   item arcanaPack1[5];
   arcana_pack(arcanaPack1, 5, inst, ante);
   bool foundJudgement = false;
@@ -64,12 +66,11 @@ long filter(instance *inst) {
       judgements++;
     }
   }
-  if (judgements < 2) {
+  if (judgements < 1) {
     return 0;
   }
-  return 1;
 
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < judgements; i++) {
     item jkr = next_joker(inst, S_Judgement, ante);
     if (jkr == Merry_Andy) {
       discards += 3;

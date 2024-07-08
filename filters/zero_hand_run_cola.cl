@@ -4,15 +4,15 @@
 
 #include "lib/immolate.cl"
 
-bool has_two_charm_tags(instance *inst, int ante, bool allowDoubleTag) {
+bool has_two_charm_tags(instance *inst, int ante) {
   // order of operations here is intentional to avoid the second check if
   // the first one fails
   item firstTag = next_tag(inst, ante);
-  if (firstTag != Charm_Tag && (!allowDoubleTag || firstTag != Double_Tag)) {
+  if (firstTag != Charm_Tag) {
     return false;
   }
   item secondTag = next_tag(inst, ante);
-  if (secondTag != Double_Tag) {
+  if (secondTag != Charm_Tag) {
     return false;
   }
   return true;
@@ -21,7 +21,7 @@ bool has_two_charm_tags(instance *inst, int ante, bool allowDoubleTag) {
 long filter(instance *inst) {
   int ante = 1;
 
-  if (!has_two_charm_tags(inst, ante, false)) {
+  if (!has_two_charm_tags(inst, ante)) {
     return 1;
   }
 

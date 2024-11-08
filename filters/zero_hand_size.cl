@@ -19,7 +19,7 @@ long filter(instance *inst) {
 
   item boss = next_boss(inst, ante);
   if (boss != The_Manacle) {
-    hand_size_removed += 1;
+    return 0;
   }
 
   // First Pack has to include exactly one Judgement and one Fool

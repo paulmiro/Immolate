@@ -18,9 +18,11 @@ long filter(instance *inst) {
   }
 
   item boss = next_boss(inst, ante);
-  if (boss != The_Manacle) {
+  if (boss != The_Plant) {
     return 0;
   }
+
+  hand_size_removed += 1;
 
   // First Pack has to include exactly one Judgement and one Fool
   item arcanaPack1[5];
